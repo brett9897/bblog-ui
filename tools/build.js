@@ -1,6 +1,8 @@
 // More info on Webpack's Node API here: https://webpack.github.io/docs/node.js-api.html
 // Allowing console calls below since this is a build file.
 /* eslint-disable no-console */
+import fs from 'fs';
+import path from 'path';
 import webpack from 'webpack';
 import config from '../webpack.config.prod';
 import {chalkError, chalkSuccess, chalkWarning, chalkProcessing} from './chalkConfig';
@@ -25,6 +27,8 @@ webpack(config).run((error, stats) => {
     console.log(chalkWarning('Webpack generated the following warnings: '));
     jsonStats.warnings.map(warning => console.log(chalkWarning(warning)));
   }
+
+  fs.createReadStream(path.join(__dirname, '../src/robots.txt')).pipe(fs.createWriteStream(path.join(__dirname, '../dist/robots.txt')));
 
   console.log(`Webpack stats: ${stats}`);
 

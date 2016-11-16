@@ -14,6 +14,9 @@ const app = express();
 app.use(express.static('dist', {maxAge: '1d'}));
 
 app.get('*', (req, res) => {
+  res.set({
+    'Cache-Control': 'public, max-age=31536000'
+  });
   res.sendFile(path.join(__dirname, '../dist/index.html'));
 });
 

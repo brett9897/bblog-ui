@@ -1,7 +1,7 @@
 import React, { PropTypes } from 'react';
 import { IndexLink } from 'react-router';
-import 'jquery/dist/jquery.js';
-import 'bootstrap/dist/js/bootstrap.js';
+import 'bootstrap';
+import 'normalize.css';
 import '../styles/styles.scss';
 
 // This is a class-based component because the current
@@ -10,10 +10,9 @@ import '../styles/styles.scss';
 export class App extends React.Component {
   render() {
     return (
-      <div>
-        <IndexLink to="/">Home</IndexLink>
-        {this.props.children}
-      </div>
+      <nav className="navbar navbar-fixed-top navbar-dark bg-primary">
+        <IndexLink to="/" className="navbar-brand">Learn From It</IndexLink>
+      </nav>
     );
   }
 }
